@@ -371,7 +371,7 @@ public class Canvas {
 
 	double x, y, z, x0, y0, z0;
 	
-	x0 = r + R;
+	x0 = r + R cx;
 	y0 = cy;
 	z0 = cz;
 
@@ -380,9 +380,9 @@ public class Canvas {
 	    for (int j=0;j<steps;j++){
 		phi = (2 * MATH.PI * j)/steps;
 
-		x = r*Math.cos(phi) + cx;
-		y = r*Math.cos(theta)*Math.sin(phi) + cy;
-		z = r*Math.sin(theta)*Math.sin(phi) + cz;
+		x = r*Math.cos(theta)*Math.cos(phi) + R*Math.cos(theta) + cx;
+		y = r*Math.sin(phi) + cy;
+		z = -1*r*Math.sin(theta)*Math.cos(phi) - R*sin(theta)  + cz;
 
 		addEdge(x0, y0, z0, x, y, z);
 

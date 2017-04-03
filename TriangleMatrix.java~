@@ -1,0 +1,17 @@
+import java.io.*;
+import java.util.*;
+
+public class TriangleMatrix extends Matrix{
+
+    public TriangleMatrix(){
+	super();
+    }
+
+    public EdgeMatrix(double[][] x){
+	super(x);
+    }
+
+    public EdgeMatrix(EdgeMatrix E){
+	super();
+    }
+    
