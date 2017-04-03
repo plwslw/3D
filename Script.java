@@ -86,6 +86,15 @@ public class Script{
 			       s.nextDouble(), s.nextDouble(), 1);
 	    }
 
+	    else if (line.equals("box")){
+		Canvas.box( s.nextInt(), s.nextInt(), s.nextInt(),
+			    s.nextInt(), s.nextInt(), s.nextInt());
+	    }
+
+	    else if (line.equals("sphere")){
+		Canvas.box( s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt());
+	    }
+	    
 	    else if (line.equals("save")){
 		System.out.println("edge matrix:\n" + C.E);
 		c.save_extension(s.next());

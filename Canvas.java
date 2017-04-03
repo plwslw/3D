@@ -223,7 +223,7 @@ public class Canvas {
 	edges.addEdge(x1, y1, z1, x2, y2, z2);
     }
     
-    public static void circle (int cx, int cy, int cz, int r, int steps){
+    public static void circle (double cx, double cy, double cz, double r, int steps){
 	
 	double x0, y0, x, y;
 	x0 = cx + r;
@@ -294,8 +294,12 @@ public class Canvas {
 
     }
 
-    public static void circle (int cx, int cy, int cz, int r){
+    public static void circle (double cx, double cy, double cz, double r){
 	circle (cx, cy, cz, r, 80);
+    }
+
+    public static void circle (int cx, int cy, int cz, int r){
+	circle (double (cx),double (cy),double (cz),double (r));
     }
 
     public static void spline (double x0, double y0, double x1, double y1,
@@ -334,14 +338,40 @@ public class Canvas {
 	addEdge(x, y, z1, x1, y, z1);
 
     }
+    
+    
+    public static void sphere (int cx, int cy, int cz, int r, int steps){
+	double theta, phi;
 
-    public static void Sphere (int cx, int cy, int cz, int r){
+	double x, y, z, x0, y0, z0;
+	
+	x0 = r + cx;
+	y0 = cy;
+	z0 = cz;
+
+	for (int i=0;i<steps;i++){
+	    theta = (MATH.PI * i)/steps;
+	    for (int j=0;j<steps;j++){
+		phi = (2 * MATH.PI * j)/steps;
+
+		x = r*Math.cos(phi) + cx;
+		y = r*Math.cos(theta)*Math.sin(phi) + cy;
+		z = r*Math.sin(theta)*Math.sin(phi) + cz;
+
+		addEdge(x0, y0, z0, x, y, z);
+
+		x0 = x; y0 = y; z0 = z;
+	    }
+	}
+    }
+
+    public static void torus (int cx, int cy, int cz, int r, int R, int steps){
 	double theta, phi;
 	int steps = 102;
 
 	double x, y, z, x0, y0, z0;
 	
-	x0 = r + cx;
+	x0 = r + R;
 	y0 = cy;
 	z0 = cz;
 
@@ -359,6 +389,10 @@ public class Canvas {
 		x0 = x; y0 = y; z0 = z;
 	    }
 	}
+    }
+
+    public static void sphere (int cx, int cy, int cz, int r){
+	sphere(cx, cy, cz, r, 102);
     }
     /*
     
